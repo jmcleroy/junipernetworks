@@ -18,4 +18,4 @@
                       port_protocol:
                         eq: ssh
                     protocol: tcp
-            state: merged
+        state: merged
