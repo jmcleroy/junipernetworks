@@ -1,0 +1,21 @@
+- name: Add ACL
+  hosts: all
+  gather_facts: false
+  connection: netconf
+  collections:
+    - junipernetworks.junos
+
+  tasks:
+    - name: Add ACL
+      junipernetworks.junos.junos_acls:
+        config:
+          - afi: ipv4
+            acls:
+              - name: allow_ssh_acl
+                aces:
+                  - name: ssh_rule
+                    source:
+                      port_protocol:
+                        eq: ssh
+                    protocol: tcp
+            state: merged

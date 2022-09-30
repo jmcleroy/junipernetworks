@@ -1,0 +1,30 @@
+- name: Add SNMP
+  hosts: all
+  gather_facts: false
+  connection: netconf
+  collections:
+    - junipernetworks.junos
+
+  tasks:
+    - name: Merge provided SNMP configuration into running configuration.
+      junipernetworks.junos.junos_snmp_server:
+        config:
+          arp:
+            set: true
+            host_name_resolution: true
+          client_lists: # ATTR-----2
+            - name: cl1
+              addresses:
+                - address: "192.16.1.0/24"
+                - address: "192.16.2.0/24"
+                - address: "11.11.11.11"
+                  restrict: true
+            - name: cl2
+              addresses:
+                - address: "192.16.4.0/24"
+          routing_instance_access: # ATTR-----3
+            set: true
+            access_lists:
+              - "clv1"
+              - "clv2"
+        state: merged

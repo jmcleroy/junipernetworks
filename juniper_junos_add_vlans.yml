@@ -1,0 +1,17 @@
+- name: Add Vlan
+  hosts: all
+  gather_facts: false
+  connection: netconf
+  collections:
+    - junipernetworks.junos
+
+  tasks:
+    - name: Merge provided Junos vlans config with running-config
+      junipernetworks.junos.junos_vlans:
+        config:
+          - name: vlan1
+            vlan_id: 1
+          - name: vlan2
+            vlan_id: 2
+            l3_interface: irb.12
+        state: merged

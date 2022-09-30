@@ -1,0 +1,12 @@
+- name: Gather basic facts
+  hosts: all
+  gather_facts: false
+  connection: netconf
+  collections:
+    - junipernetworks.junos
+
+  tasks:
+    - name: Gather basic facts
+      junipernetworks.junos.junos_facts:
+        gather_subset: all
+        gather_network_resources: all
