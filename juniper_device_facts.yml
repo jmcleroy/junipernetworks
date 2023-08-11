@@ -1,0 +1,10 @@
+- name: Gather basic facts
+  hosts: all
+  gather_facts: false
+  connection: local
+  collections:
+    - juniper.device
+
+  tasks:
+    - name: Gather basic facts
+      facts:
