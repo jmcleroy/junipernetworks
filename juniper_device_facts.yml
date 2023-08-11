@@ -1,3 +1,4 @@
+---
 - name: Gather basic facts
   hosts: all
   gather_facts: false
