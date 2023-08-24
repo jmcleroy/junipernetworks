@@ -2,7 +2,7 @@
 - name: Gather basic facts
   hosts: all
   gather_facts: false
-  connection: local
+  connection: netconf
   collections:
     - juniper.device
 
